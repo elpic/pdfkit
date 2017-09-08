@@ -1,2 +1,7 @@
-export Jpeg from './Jpeg';
-export Png from './Png';
+import Jpeg from './Jpeg';
+import Png from './Png';
+
+export default {
+  Jpeg,
+  Png,
+};

@@ -6,7 +6,9 @@ By Devon Govett
 import fs from 'fs';
 
 import Data from './data';
-import { Jpeg, Png } from './images/index';
+import Images from './images/index';
+
+const { Jpeg, Png } = Images;
 
 class PDFImage {
   static open(src, label) {

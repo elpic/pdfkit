@@ -8,7 +8,7 @@
  */
 import PDFImage from '../Image';
 
-module.exports = {
+export default {
   initImages() {
     this._imageRegistry = {};
     return this._imageCount = 0;

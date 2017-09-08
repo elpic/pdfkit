@@ -14,11 +14,17 @@ By Devon Govett
 */
 
 import stream from 'stream';
-import fs from 'fs';
 
 import PDFObject from './object';
 import PDFReference from './reference';
 import PDFPage from './page';
+
+import ColorMixin from './mixins/color';
+import VectorMixin from './mixins/vector';
+import FontsMixin from './mixins/fonts';
+import TextMixin from './mixins/text';
+import ImagesMixin from './mixins/images';
+import AnnotationsMixin from './mixins/annotations';
 
 var PDFDocument = (function() {
   let mixin = undefined;
@@ -37,24 +43,26 @@ var PDFDocument = (function() {
       };
 
       // Load mixins
-      mixin(require('./mixins/color'));
-      mixin(require('./mixins/vector'));
-      mixin(require('./mixins/fonts'));
-      mixin(require('./mixins/text'));
-      mixin(require('./mixins/images'));
-      mixin(require('./mixins/annotations'));
+      mixin(ColorMixin);
+      mixin(VectorMixin);
+      mixin(FontsMixin);
+      mixin(TextMixin);
+      mixin(ImagesMixin);
+      mixin(AnnotationsMixin);
     }
     constructor(options) {
-      {
-        // Hack: trick Babel/TypeScript into allowing this before super.
-        if (false) { super(); }
-        let thisFn = (() => { this; }).toString();
-        let thisName = thisFn.slice(thisFn.indexOf('{') + 1, thisFn.indexOf(';')).trim();
-        eval(`${thisName} = this;`);
-      }
+      super(...arguments);
+
+      // {
+      //   // Hack: trick Babel/TypeScript into allowing this before super.
+      //   if (false) { super(); }
+      //   let thisFn = (() => { this; }).toString();
+      //   let thisName = thisFn.slice(thisFn.indexOf('{') + 1, thisFn.indexOf(';')).trim();
+      //   eval(`${thisName} = this;`);
+      // }
       if (options == null) { options = {}; }
       this.options = options;
-      super(...arguments);
+
 
       // PDF version
       this.version = 1.3;
@@ -198,30 +206,6 @@ var PDFDocument = (function() {
         this._finalize();
         return this._ended = false;
       }
-    }
-
-    write(filename, fn) {
-      // print a deprecation warning with a stacktrace
-      const err = new Error(`\
-PDFDocument#write is deprecated, and will be removed in a future version of PDFKit. \
-Please pipe the document into a Node stream.\
-`
-      );
-
-      console.warn(err.stack);
-
-      this.pipe(fs.createWriteStream(filename));
-      this.end();
-      return this.once('end', fn);
-    }
-
-    output(fn) {
-      // more difficult to support this. It would involve concatenating all the buffers together
-      throw new Error(`\
-PDFDocument#output is deprecated, and has been removed from PDFKit. \
-Please pipe the document into a Node stream.\
-`
-      );
     }
 
     end() {

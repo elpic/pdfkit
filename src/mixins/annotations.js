@@ -5,7 +5,7 @@
  * DS207: Consider shorter variations of null checks
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-module.exports = {
+export default {
   annotate(x, y, w, h, options) {
     options.Type = 'Annot';
     options.Rect = this._convertRect(x, y, w, h);

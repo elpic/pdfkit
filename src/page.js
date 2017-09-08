@@ -156,4 +156,4 @@ var PDFPage = (function() {
   return PDFPage;
 })();
 
-module.exports = PDFPage;
+export default PDFPage;

@@ -11,7 +11,7 @@ import PDFObject from '../object';
 
 const number = PDFObject.number;
 
-module.exports = {
+export default {
   initText() {
     // Current coordinates
     this.x = 0;

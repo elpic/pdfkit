@@ -6,7 +6,7 @@
  */
 import FontUtils from '../font/utils';
 
-module.exports = {
+ export default {
   initFonts() {
     // Lookup table for embedded fonts
     this._fontFamilies = {};

@@ -6,9 +6,11 @@
  * DS206: Consider reworking classes to avoid initClass
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
-const fs = require('fs');
 
-import { WinAnsiMap, Characters } from '../constants';
+import fs from 'fs';
+import Constants from '../constants';
+
+const { WinAnsiMap, Characters } = Constants;
 
 var AFMFont = (function() {
   AFMFont = class AFMFont {

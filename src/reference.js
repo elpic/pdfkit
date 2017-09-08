@@ -11,26 +11,20 @@ PDFReference - represents a reference to another object in the PDF object heirar
 By Devon Govett
 */
 
-const zlib = require('zlib');
-const stream = require('stream');
+import zlib from 'zlib';
+import stream from 'stream';
 
 import PDFObject from './object';
 
 class PDFReference extends stream.Writable {
   constructor(document, id, data) {
-    {
-      // Hack: trick Babel/TypeScript into allowing this before super.
-      if (false) { super(); }
-      let thisFn = (() => { this; }).toString();
-      let thisName = thisFn.slice(thisFn.indexOf('{') + 1, thisFn.indexOf(';')).trim();
-      eval(`${thisName} = this;`);
-    }
+    super({decodeStrings: false});
+
     this.finalize = this.finalize.bind(this);
     this.document = document;
     this.id = id;
     if (data == null) { data = {}; }
     this.data = data;
-    super({decodeStrings: false});
     this.gen = 0;
     this.deflate = null;
     this.compress = this.document.compress && !this.data.Filter;
@@ -104,4 +98,4 @@ class PDFReference extends stream.Writable {
   }
 }
 
-module.exports = PDFReference;
+export default PDFReference;

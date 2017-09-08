@@ -8,7 +8,7 @@
  */
 const {PDFGradient, PDFLinearGradient, PDFRadialGradient} = require('../gradient');
 
-module.exports = {
+export default {
   initColor() {
     // The opacity dictionaries
     this._opacityRegistry = {};

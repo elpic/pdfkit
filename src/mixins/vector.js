@@ -14,7 +14,7 @@ const number = PDFObject.number;
 // This constant is used to approximate a symmetrical arc using a cubic
 // Bezier curve.
 const KAPPA = 4.0 * ((Math.sqrt(2) - 1.0) / 3.0);
-module.exports = {
+export default {
   initVector() {
     this._ctm = [1, 0, 0, 1, 0, 0]; // current transformation matrix
     return this._ctmStack = [];

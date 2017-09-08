@@ -1,2 +1,7 @@
-export Characters from './fonts/characters';
-export WinAnsiMap from './fonts/winAnsiMap';
+import Characters from './fonts/characters';
+import WinAnsiMap from './fonts/winAnsiMap';
+
+export default {
+  Characters,
+  WinAnsiMap,
+};

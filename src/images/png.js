@@ -5,11 +5,11 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import zlib from 'zlib';
-import PNGJs from 'png-js';
+import pngjs from 'pngjs';
 
 class Png {
   constructor(data) {
-    this.image = new PNGJs(data);
+    this.image = new pngjs(data);
     this.width = this.image.width;
     this.height = this.image.height;
     this.imgData = this.image.imgData;
